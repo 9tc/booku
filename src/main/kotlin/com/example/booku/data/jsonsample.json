@@ -1,0 +1,265 @@
+[
+  {
+    "onix": {
+      "RecordReference": "9784764904088",
+      "NotificationType": "03",
+      "ProductIdentifier": {
+        "ProductIDType": "15",
+        "IDValue": "9784764904088"
+      },
+      "DescriptiveDetail": {
+        "ProductComposition": "00",
+        "ProductForm": "BA",
+        "ProductFormDetail": "B109",
+        "TitleDetail": {
+          "TitleType": "01",
+          "TitleElement": {
+            "TitleElementLevel": "01",
+            "TitleText": {
+              "collationkey": "アルゴリズムイントロダクションダイサンパンソウゴウバン",
+              "content": "アルゴリズムイントロダクション 第3版　総合版"
+            }
+          }
+        },
+        "Contributor": [
+          {
+            "SequenceNumber": "1",
+            "ContributorRole": [
+              "A01"
+            ],
+            "PersonName": {
+              "collationkey": "ティ コルメン",
+              "content": "Ｔ コルメン"
+            }
+          },
+          {
+            "SequenceNumber": "2",
+            "ContributorRole": [
+              "A01"
+            ],
+            "PersonName": {
+              "collationkey": "シー ライザーソン",
+              "content": "Ｃ ライザーソン"
+            }
+          },
+          {
+            "SequenceNumber": "3",
+            "ContributorRole": [
+              "A01"
+            ],
+            "PersonName": {
+              "collationkey": "アール リベスト",
+              "content": "Ｒ リベスト"
+            }
+          },
+          {
+            "SequenceNumber": "4",
+            "ContributorRole": [
+              "A01"
+            ],
+            "PersonName": {
+              "collationkey": "シー シュタイン",
+              "content": "Ｃ シュタイン"
+            }
+          },
+          {
+            "SequenceNumber": "5",
+            "ContributorRole": [
+              "B06"
+            ],
+            "PersonName": {
+              "collationkey": "アサノ テツオ",
+              "content": "浅野 哲夫"
+            },
+            "BiographicalNote": "浅野 哲夫：北陸先端科学技術大学院大学教授"
+          },
+          {
+            "SequenceNumber": "6",
+            "ContributorRole": [
+              "B06"
+            ],
+            "PersonName": {
+              "collationkey": "イワノ カズオ",
+              "content": "岩野 和生"
+            },
+            "BiographicalNote": "岩野 和生：三菱商事（株）ビジネスサービス部門顧問(Ph.D.)"
+          },
+          {
+            "SequenceNumber": "7",
+            "ContributorRole": [
+              "B06"
+            ],
+            "PersonName": {
+              "collationkey": "ウメオ ヒロシ",
+              "content": "梅尾 博司"
+            },
+            "BiographicalNote": "梅尾 博司：大阪電気通信大学教授"
+          },
+          {
+            "SequenceNumber": "8",
+            "ContributorRole": [
+              "B06"
+            ],
+            "PersonName": {
+              "collationkey": "ヤマシタ マサフミ",
+              "content": "山下 雅史"
+            },
+            "BiographicalNote": "山下 雅史：九州大学教授"
+          },
+          {
+            "SequenceNumber": "9",
+            "ContributorRole": [
+              "B06"
+            ],
+            "PersonName": {
+              "collationkey": "ワダ コウイチ",
+              "content": "和田 幸一"
+            },
+            "BiographicalNote": "和田 幸一：法政大学教授"
+          }
+        ],
+        "Language": [
+          {
+            "LanguageRole": "01",
+            "LanguageCode": "jpn"
+          }
+        ],
+        "Extent": [
+          {
+            "ExtentType": "11",
+            "ExtentValue": "1120",
+            "ExtentUnit": "03"
+          }
+        ],
+        "Subject": [
+          {
+            "MainSubject": "",
+            "SubjectSchemeIdentifier": "78",
+            "SubjectCode": "3350"
+          },
+          {
+            "SubjectSchemeIdentifier": "79",
+            "SubjectCode": "20"
+          },
+          {
+            "SubjectSchemeIdentifier": "20",
+            "SubjectHeadingText": "アルゴリズム;MIT;データ構造"
+          }
+        ],
+        "Audience": [
+          {
+            "AudienceCodeType": "22",
+            "AudienceCodeValue": "00"
+          }
+        ]
+      },
+      "CollateralDetail": {
+        "TextContent": [
+          {
+            "TextType": "02",
+            "ContentAudience": "00",
+            "Text": "原著は世界標準教科書，MITでのアルゴリズム論の教育用テキスト第3版．本書は第1～35章，付録をまとめた完訳総合版である．"
+          },
+          {
+            "TextType": "03",
+            "ContentAudience": "00",
+            "Text": "原著は，計算機科学の基礎分野で世界的に著名な4人の専門家がMITでの教育用に著した計算機アルゴリズム論の包括的テキストであり，その第3版．前版までで既にアルゴリズムとデータ構造に関する世界標準教科書としての地位を確立しているが，より良い教科書を目指して再び全面的な記述の見直しがなされ，それを基に新たな章や節の追加なども含めて，大幅な改訂がなされている．\n　単にアルゴリズムをわかりやすく解説するだけでなく，最終的なアルゴリズム設計に至るまでに，どのような概念が必要で，それがどのように解析に裏打ちされているのかを科学的に詳述している．\n　さらに各節末には練習問題（全957題）が，また章末にも多様なレベルの問題が多数配置されており（全158題），学部や大学院の講義用教科書として，また技術系専門家のハンドブックあるいはアルゴリズム大事典としても活用できる．\n　本書は，原著の第1～35章，および付録A～Dまでの完訳総合版である．また巻末の索引も圧巻で，和（英）‐英（和）という構成により，「数理用語辞典」としてもまことに有用である．\n"
+          },
+          {
+            "TextType": "04",
+            "ContentAudience": "00",
+            "Text": "I 基礎：1．計算におけるアルゴリズムの役割，2．さあ，始めよう，3．関数の増加，4．分割統治，5．確率的解析と乱択アルゴリズム；\nII ソートと順序統計量；6．ヒープソート，7．クイックソート，8．線形時間ソート，9．中央値と順序統計量；\nIII データ構造：10．基本データ構造，11．ハッシュ表，12．２分探索木，13．２色木，14．データ構造の補強；\nIV 高度な設計と解析の手法：15．動的計画法，16．貪欲アルゴリズム，17．ならし解析\nV 高度なデータ構造：18．Ｂ木，19．フィボナッチヒープ，20．Van Emde Boas木，21．互いに素な集合族のためのデータ構造\nVI グラフアルゴリズム：22．基本的グラフアルゴリズム，23．最小全域木，24．単一始点最短路問題，25．全点対最短路，26．最大フロー\nVII精選トピックス：27．マルチスレッドアルゴリズム，28．行列演算，29．線形計画法，30．多項式とFFT,31．整数論的アルゴリズム，32．文字列照合，33．計算幾何学，34．NP完全性，35．近似アルゴリズム；\n付録　数学的基礎：A.和，B.集合など，C.数え上げと確率，D.行列\n索引：記号，手続き（擬似コード），和（英），英（和）"
+          }
+        ],
+        "SupportingResource": [
+          {
+            "ResourceContentType": "01",
+            "ContentAudience": "01",
+            "ResourceMode": "03",
+            "ResourceVersion": [
+              {
+                "ResourceForm": "02",
+                "ResourceVersionFeature": [
+                  {
+                    "ResourceVersionFeatureType": "01",
+                    "FeatureValue": "D502"
+                  },
+                  {
+                    "ResourceVersionFeatureType": "04",
+                    "FeatureValue": "9784764904088.jpg"
+                  }
+                ],
+                "ResourceLink": "https://cover.openbd.jp/9784764904088.jpg"
+              }
+            ]
+          }
+        ]
+      },
+      "PublishingDetail": {
+        "Imprint": {
+          "ImprintIdentifier": [
+            {
+              "ImprintIDType": "19",
+              "IDValue": "7649"
+            },
+            {
+              "ImprintIDType": "24",
+              "IDValue": "1392"
+            }
+          ],
+          "ImprintName": "近代科学社"
+        },
+        "Publisher": {
+          "PublishingRole": "01",
+          "PublisherIdentifier": [
+            {
+              "PublisherIDType": "19",
+              "IDValue": "7649"
+            },
+            {
+              "PublisherIDType": "24",
+              "IDValue": "1392"
+            }
+          ],
+          "PublisherName": "近代科学社"
+        },
+        "PublishingDate": [
+          {
+            "PublishingDateRole": "01",
+            "Date": "20131217"
+          }
+        ]
+      },
+      "ProductSupply": {
+        "SupplyDetail": {
+          "ReturnsConditions": {
+            "ReturnsCodeType": "04",
+            "ReturnsCode": "03"
+          },
+          "ProductAvailability": "99",
+          "Price": [
+            {
+              "PriceType": "03",
+              "PriceAmount": "14000",
+              "CurrencyCode": "JPY"
+            }
+          ]
+        }
+      }
+    },
+    "hanmoto": {
+      "datemodified": "2015-08-13 15:47:49",
+      "datecreated": "2015-08-13 15:47:49"
+    },
+    "summary": {
+      "isbn": "9784764904088",
+      "title": "アルゴリズムイントロダクション 第3版　総合版",
+      "volume": "",
+      "series": "",
+      "publisher": "近代科学社",
+      "pubdate": "20131217",
+      "cover": "https://cover.openbd.jp/9784764904088.jpg",
+      "author": "Ｔコルメン／著 Ｃライザーソン／著 Ｒリベスト／著 Ｃシュタイン／著 浅野哲夫／翻訳 ほか"
+    }
+  }
+]
