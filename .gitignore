@@ -24,5 +24,3 @@ hs_err_pid*
 *.gitattributes
 .DS_Store
 .idea/
-.gradle
-build/
