@@ -90,7 +90,7 @@ class BookController(private val bookRepository: BookRepository) {
             useArrayPolymorphism = true
         }.decodeFromString<OpenDBData>(response.body!!.toString().drop(1).dropLast(1))
 
-        localBook = Book(1, j.summary.title, j.summary.author, isbn, false)
+        localBook = Book(1, j.summary.title!!, j.summary.author!!, isbn, false)
 
         return "redirect:/books/add"
     }
