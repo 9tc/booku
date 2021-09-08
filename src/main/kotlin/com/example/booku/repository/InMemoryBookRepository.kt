@@ -9,9 +9,9 @@ class InMemoryBookRepository : BookRepository {
 
     private val maxId: Long get() = books.map(Book::id).maxOrNull() ?: 0
 
-    override fun create(name: String, author: String, isbn: String): Book {
+    override fun create(name: String, author: String, isbn: String, height: Long, width: Long, pages: Long): Book {
         val id = maxId + 1
-        val book = Book(id, name, author, isbn, false)
+        val book = Book(id, name, author, isbn, false, height, width, pages)
         books += book
 
         return book

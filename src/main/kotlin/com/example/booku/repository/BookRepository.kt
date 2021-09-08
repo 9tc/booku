@@ -3,7 +3,7 @@ package com.example.booku.repository
 import com.example.booku.Book
 
 interface BookRepository {
-    fun create(name: String, author: String, isbn: String): Book
+    fun create(name: String, author: String, isbn: String, height: Long, width: Long, pages: Long): Book
 
     fun delete(id: Long)
 

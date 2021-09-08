@@ -1,6 +1,8 @@
 package com.example.booku.form
 
 import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 class BookAddForm(
@@ -14,5 +16,16 @@ class BookAddForm(
     var author: String? = null,
 
     @Size(max = 13)
-    var isbn: String? = null
-)
+    var isbn: String? = null,
+
+    @NotNull
+    var height: Long? = null,
+
+    @NotNull
+    var width: Long? = null,
+
+    @NotNull
+    var pages: Long? = null
+) {
+
+}

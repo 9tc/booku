@@ -13,6 +13,10 @@
         <div><label> 名前 : <input type="text" th:field="*{name}"/></label></div>
         <div><label> 著者 : <input type="text" th:field="*{author}"/></label></div>
         <div><label> ISBN : <input type="text" th:field="*{isbn}"/></label></div>
+        <div><label> Height(mm) : <input type="text" th:field="*{height}"/></label></div>
+        <div><label> Width(mm) : <input type="text" th:field="*{width}"/></label></div>
+        <div><label> Pages : <input type="text" th:field="*{pages}"/></label></div>
+
         <div><p th:if="${#fields.hasErrors('name') or #fields.hasErrors('author')}" th:errors="*{name}">Error!</p></div>
         <div>
             <input type="submit" value="追加" name="add"/>
