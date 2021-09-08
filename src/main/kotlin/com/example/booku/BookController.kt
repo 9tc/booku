@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate
 @Controller
 @RequestMapping("books")
 class BookController(private val bookRepository: BookRepository) {
-    var localBook: Book = Book(-1L,"","","", false)
+    var localBook: Book = Book()
     //index 本棚の内容の取得
     @GetMapping("")
     fun index(model: Model): String{
@@ -38,7 +38,10 @@ class BookController(private val bookRepository: BookRepository) {
             form.name = localBook.name
             form.author = localBook.author
             form.isbn = localBook.isbn
-            localBook = Book(-1L,"","","", false)
+            form.height = localBook.height
+            form.width = localBook.width
+            form.pages = localBook.pages
+            localBook = Book()
         }
         return "books/add"
     }
@@ -51,7 +54,10 @@ class BookController(private val bookRepository: BookRepository) {
         val name = requireNotNull(form.name)
         val author = requireNotNull(form.author)
         val isbn = requireNotNull(form.isbn)
-        bookRepository.create(name, author, isbn)
+        val height = requireNotNull(form.height)
+        val width = requireNotNull(form.width)
+        val pages = requireNotNull(form.pages)
+        bookRepository.create(name, author, isbn, height, width, pages)
         return "redirect:/books"
     }
 
@@ -90,9 +96,34 @@ class BookController(private val bookRepository: BookRepository) {
             useArrayPolymorphism = true
         }.decodeFromString<OpenDBData>(response.body!!.toString().drop(1).dropLast(1))
 
-        localBook = Book(1, j.summary.title!!, j.summary.author!!, isbn, false)
+        val bookModel = j.onix.descriptiveDetail!!.productFormDetail
+        val (height, width) = convertModelToSize(bookModel)
+        localBook = Book(1, j.summary.title!!, j.summary.author!!, isbn, false, height, width, j.onix.descriptiveDetail.extent!![0].extentValue!!.toLong())
 
         return "redirect:/books/add"
+    }
+
+    private fun convertModelToSize(bookModel: String?): Pair<Long, Long> {
+        when(bookModel){
+            "B108" -> return Pair(210, 148)
+            "B109" -> return Pair(257, 182)
+            "B110" -> return Pair(182, 128)
+            "B111" -> return Pair(148, 105)
+            "B112" -> return Pair(182, 103)
+            "B119" -> return Pair(188, 127)
+            "B120" -> return Pair(188, 127) //46変形
+            "B121" -> return Pair(297, 210)
+            "B122" -> return Pair(297, 232) //A4変形なので諸説
+            "B123" -> return Pair(210, 148) //A5変形
+            "B124" -> return Pair(257, 182) //B5変形
+            "B125" -> return Pair(182, 128) //B6変形
+            "B126" -> return Pair(257, 210)
+            "B127" -> return Pair(128, 96)
+            "B128" -> return Pair(220, 150)
+            "B129" -> return Pair(220, 150) //kiku変形
+            "B130" -> return Pair(364, 257)
+            else -> return Pair(0, 0)
+        }
     }
 
     //本棚の本の更新
@@ -103,6 +134,9 @@ class BookController(private val bookRepository: BookRepository) {
         form.author = book.author
         form.isbn = book.isbn
         form.read = book.read
+        form.height = book.height
+        form.width = book.width
+        form.pages = book.pages
         return "books/edit"
     }
 
@@ -112,7 +146,7 @@ class BookController(private val bookRepository: BookRepository) {
 
         val book = bookRepository.findById(id) ?: throw NotFoundException()
         val newBook = book.copy(name = requireNotNull(form.name), author = requireNotNull(form.author),
-            isbn = requireNotNull(form.isbn), read = form.read)
+            isbn = requireNotNull(form.isbn), read = form.read, height = requireNotNull(form.height), width = requireNotNull(form.width), pages = requireNotNull(form.pages))
         bookRepository.update(newBook)
         if(form.delete) bookRepository.delete(id)
         return "redirect:/books"
