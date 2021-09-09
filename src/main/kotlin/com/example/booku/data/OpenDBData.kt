@@ -26,6 +26,7 @@ import kotlinx.serialization.Serializable
             @SerialName("ProductComposition") val productComposition: String? = null,
             @SerialName("ProductForm") val productForm: String? = null,
             @SerialName("ProductFormDetail") val productFormDetail: String? = null,
+            @SerialName("Measure") val measure: List<Measure>? = null,
             @SerialName("TitleDetail") val titleDetail: TitleDetail? = null,
             @SerialName("Contributor") val contributor: List<Contributor>? = null,
             @SerialName("Language") val language: List<Language>,
@@ -81,6 +82,12 @@ import kotlinx.serialization.Serializable
             @Serializable data class Audience(
                 @SerialName("AudienceCodeType") val audienceCodeType: String? = null,
                 @SerialName("AudienceCodeValue") val audienceCodeValue: String? = null
+            )
+
+            @Serializable data class Measure (
+                @SerialName("MeasureType") val measureType: String? = null,
+                @SerialName("Measurement") val measurement: String? = null,
+                @SerialName("MeasureUnitCode") val measureUnitCode: String? = null
             )
         }
 

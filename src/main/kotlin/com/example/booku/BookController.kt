@@ -96,34 +96,45 @@ class BookController(private val bookRepository: BookRepository) {
             useArrayPolymorphism = true
         }.decodeFromString<OpenDBData>(response.body!!.toString().drop(1).dropLast(1))
 
-        val bookModel = j.onix.descriptiveDetail!!.productFormDetail
-        val (height, width) = convertModelToSize(bookModel)
+        val bookDetail = j.onix.descriptiveDetail!!
+
+        val (height, width) = convertModelToSize(bookDetail)
+
         localBook = Book(1, j.summary.title!!, j.summary.author!!, isbn, false, height, width, j.onix.descriptiveDetail.extent!![0].extentValue!!.toLong())
 
         return "redirect:/books/add"
     }
 
-    private fun convertModelToSize(bookModel: String?): Pair<Long, Long> {
-        when(bookModel){
-            "B108" -> return Pair(210, 148)
-            "B109" -> return Pair(257, 182)
-            "B110" -> return Pair(182, 128)
-            "B111" -> return Pair(148, 105)
-            "B112" -> return Pair(182, 103)
-            "B119" -> return Pair(188, 127)
-            "B120" -> return Pair(188, 127) //46変形
-            "B121" -> return Pair(297, 210)
-            "B122" -> return Pair(297, 232) //A4変形なので諸説
-            "B123" -> return Pair(210, 148) //A5変形
-            "B124" -> return Pair(257, 182) //B5変形
-            "B125" -> return Pair(182, 128) //B6変形
-            "B126" -> return Pair(257, 210)
-            "B127" -> return Pair(128, 96)
-            "B128" -> return Pair(220, 150)
-            "B129" -> return Pair(220, 150) //kiku変形
-            "B130" -> return Pair(364, 257)
-            else -> return Pair(0, 0)
-        }
+    private fun convertModelToSize(bookDetail: OpenDBData.Onix.DescriptiveDetail): Pair<Long, Long> {
+        if(bookDetail.productFormDetail != null) {
+            when (bookDetail.productFormDetail) {
+                "B108" -> return Pair(210, 148)
+                "B109" -> return Pair(257, 182)
+                "B110" -> return Pair(182, 128)
+                "B111" -> return Pair(148, 105)
+                "B112" -> return Pair(182, 103)
+                "B119" -> return Pair(188, 127)
+                "B120" -> return Pair(188, 127) //46変形
+                "B121" -> return Pair(297, 210)
+                "B122" -> return Pair(297, 232) //A4変形なので諸説
+                "B123" -> return Pair(210, 148) //A5変形
+                "B124" -> return Pair(257, 182) //B5変形
+                "B125" -> return Pair(182, 128) //B6変形
+                "B126" -> return Pair(257, 210)
+                "B127" -> return Pair(128, 96)
+                "B128" -> return Pair(220, 150)
+                "B129" -> return Pair(220, 150) //kiku変形
+                "B130" -> return Pair(364, 257)
+                else -> return Pair(-1L, -1L)
+            }
+        }else if(bookDetail.measure !=  null){
+            val len = bookDetail.measure[0].measurement!!.toLong()
+            return if (bookDetail.measure[0].measureType == "01"){
+                Pair(len, (len / 1.414).toLong())
+            }else{
+                Pair((len * 1.414).toLong(), len)
+            }
+        }else return Pair(-1L, -1L)
     }
 
     //本棚の本の更新
