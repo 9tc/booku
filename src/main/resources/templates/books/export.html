@@ -5,24 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <title>本棚</title>
+    <title>Export</title>
 </head>
 <body>
 <div class="container">
-    <a th:href="@{/books/add}">本の追加</a>
-    <a th:href="@{/books/add_by_isbn}">ISBNで本の追加</a>
-    <!-- <a th:href="@{/books/searchtitle}">本の検索</a> -->
-    <a th:href="@{/books/export}">csvでexport</a>
+    <a th:href="@{/books}">本棚へ戻る</a>
 
     <p th:if="${books.isEmpty()}">本棚に本が登録されていません</p>
 
     <ul th:unless="${books.isEmpty()}">
-        <li th:each="book : ${books}">
-            <a th:href="@{books/{id}/edit(id=${book.id})}">
-                <span th:unless="${book.read}" th:text="${book.name} + ' - ' + ${book.author}"></span>
-                <s th:if="${book.read}" th:text="${book.name} + ' - ' + ${book.author}"></s>
-            </a>
-        </li>
+        <textarea readonly th:cols="${cols}" th:rows="${rows}" th:text="${books}"></textarea>
     </ul>
 </div>
 

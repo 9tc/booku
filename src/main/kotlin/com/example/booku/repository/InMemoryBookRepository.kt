@@ -2,6 +2,7 @@ package com.example.booku.repository
 
 import com.example.booku.Book
 import org.springframework.stereotype.Repository
+import java.lang.Integer.max
 
 @Repository
 class InMemoryBookRepository : BookRepository {
@@ -32,4 +33,22 @@ class InMemoryBookRepository : BookRepository {
     override fun findAll(): List<Book> = books.toList()
 
     override fun findById(id: Long): Book? = books.find{it.id == id}
+
+    override fun toString(): String {
+        var s = ""
+        for(book in books) s += book.toString() + "\n"
+        return s
+    }
+
+    override fun count(): Long {
+        return books.size.toLong()
+    }
+
+    override fun maxLength(): Long? {
+        var r = 0
+        for(book in books){
+            r = max(r, book.toString().length)
+        }
+        return r.toLong() * 2
+    }
 }
