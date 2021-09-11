@@ -31,6 +31,14 @@ class BookController(private val bookRepository: BookRepository) {
         return "books/index"
     }
 
+    @GetMapping("export")
+    fun export(model: Model): String{
+        model.addAttribute("cols", bookRepository.maxLength())
+        model.addAttribute("rows", bookRepository.count())
+        model.addAttribute("books", bookRepository.toString())
+        return "books/export"
+    }
+
     //本棚に本の追加
     @GetMapping("add")
     fun add(form: BookAddForm): String{
@@ -162,6 +170,8 @@ class BookController(private val bookRepository: BookRepository) {
         if(form.delete) bookRepository.delete(id)
         return "redirect:/books"
     }
+
+
     /*
     @GetMapping("searchtitle")
     fun searchTitle(form: BookSearchByTitleForm): String{

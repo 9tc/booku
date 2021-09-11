@@ -9,4 +9,8 @@ data class Book(
     val height: Long = -1L,
     val width: Long = -1L,
     val pages: Long = -1L
-    )
+    ){
+    override fun toString(): String {
+        return "$name, $author, $isbn, $read, $height, $width, $pages"
+    }
+}

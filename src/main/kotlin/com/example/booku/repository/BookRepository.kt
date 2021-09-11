@@ -12,4 +12,6 @@ interface BookRepository {
     fun findAll(): List<Book>
 
     fun findById(id: Long): Book?
+    fun count(): Long?
+    fun maxLength(): Long?
 }
