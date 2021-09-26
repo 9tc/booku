@@ -23,6 +23,7 @@ import org.springframework.web.client.RestTemplate
 @Controller
 @RequestMapping("books")
 class BookController(private val bookRepository: BookRepository) {
+    val limitBooks = 10000L
     var localBook: Book = Book()
     //index 本棚の内容の取得
     @GetMapping("")
@@ -58,6 +59,7 @@ class BookController(private val bookRepository: BookRepository) {
     @PostMapping(params=["add"])
     fun create(@Validated form: BookAddForm, bindingResult: BindingResult): String{
         if(bindingResult.hasErrors()) return "books/add"
+        if(bookRepository.count()!! >= limitBooks) return "books/bookslimit"
 
         val name = requireNotNull(form.name)
         val author = requireNotNull(form.author)
@@ -73,6 +75,7 @@ class BookController(private val bookRepository: BookRepository) {
     //本棚に本の追加
     @GetMapping("add_by_isbn")
     fun addByISBN(form: BookAddByISBNForm): String{
+        if(bookRepository.count()!! >= limitBooks) return "books/bookslimit"
         return "books/add_by_isbn"
     }
 
@@ -114,35 +117,39 @@ class BookController(private val bookRepository: BookRepository) {
     }
 
     private fun convertModelToSize(bookDetail: OpenDBData.Onix.DescriptiveDetail): Pair<Long, Long> {
-        if(bookDetail.productFormDetail != null) {
-            when (bookDetail.productFormDetail) {
-                "B108" -> return Pair(210, 148)
-                "B109" -> return Pair(257, 182)
-                "B110" -> return Pair(182, 128)
-                "B111" -> return Pair(148, 105)
-                "B112" -> return Pair(182, 103)
-                "B119" -> return Pair(188, 127)
-                "B120" -> return Pair(188, 127) //46変形
-                "B121" -> return Pair(297, 210)
-                "B122" -> return Pair(297, 232) //A4変形なので諸説
-                "B123" -> return Pair(210, 148) //A5変形
-                "B124" -> return Pair(257, 182) //B5変形
-                "B125" -> return Pair(182, 128) //B6変形
-                "B126" -> return Pair(257, 210)
-                "B127" -> return Pair(128, 96)
-                "B128" -> return Pair(220, 150)
-                "B129" -> return Pair(220, 150) //kiku変形
-                "B130" -> return Pair(364, 257)
-                else -> return Pair(-1L, -1L)
+        when {
+            bookDetail.productFormDetail != null -> {
+                when (bookDetail.productFormDetail) {
+                    "B108" -> return Pair(210, 148)
+                    "B109" -> return Pair(257, 182)
+                    "B110" -> return Pair(182, 128)
+                    "B111" -> return Pair(148, 105)
+                    "B112" -> return Pair(182, 103)
+                    "B119" -> return Pair(188, 127)
+                    "B120" -> return Pair(188, 127) //46変形
+                    "B121" -> return Pair(297, 210)
+                    "B122" -> return Pair(297, 232) //A4変形なので諸説
+                    "B123" -> return Pair(210, 148) //A5変形
+                    "B124" -> return Pair(257, 182) //B5変形
+                    "B125" -> return Pair(182, 128) //B6変形
+                    "B126" -> return Pair(257, 210)
+                    "B127" -> return Pair(128, 96)
+                    "B128" -> return Pair(220, 150)
+                    "B129" -> return Pair(220, 150) //kiku変形
+                    "B130" -> return Pair(364, 257)
+                    else -> return Pair(-1L, -1L)
+                }
             }
-        }else if(bookDetail.measure !=  null){
-            val len = bookDetail.measure[0].measurement!!.toLong()
-            return if (bookDetail.measure[0].measureType == "01"){
-                Pair(len, (len / 1.414).toLong())
-            }else{
-                Pair((len * 1.414).toLong(), len)
+            bookDetail.measure !=  null -> {
+                val len = bookDetail.measure[0].measurement!!.toLong()
+                return if (bookDetail.measure[0].measureType == "01"){
+                    Pair(len, (len / 1.414).toLong())
+                }else{
+                    Pair((len * 1.414).toLong(), len)
+                }
             }
-        }else return Pair(-1L, -1L)
+            else -> return Pair(-1L, -1L)
+        }
     }
 
     //本棚の本の更新
@@ -209,8 +216,3 @@ class BookController(private val bookRepository: BookRepository) {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     fun handleNotFoundException(): String = "books/not_found"
 }
-//TODO SQLつかう
-//TODO 認証入れる
-//TODO 個人の本棚にする
-//TODO 本列挙じゃなくて本棚にしよう?
-//TODO カメラからバーコード読み取りできたら熱い
